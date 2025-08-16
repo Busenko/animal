@@ -651,7 +651,7 @@ top: 0;
     position: absolute;
      z-index: 10;
 top: -315px;
- left: 5px;
+ right: 5px;
  width: 330px;
 }
 .pet-support__block {
@@ -750,7 +750,7 @@ top: 140px;
 .support__img2 {
  
 top: -233px;
- left: 5px;
+ right: 5px;
  width: 250px;
 }
 }
@@ -1228,3 +1228,4 @@ top: -250px;
     transform: translate(0, 0);
 
 }
+

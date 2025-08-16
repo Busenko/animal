@@ -735,114 +735,115 @@ window.addEventListener('load', handleScrollOnce);
 // Відправка форми в гугл таблицю................................................................................................
 // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // const scriptURL = 'https://script.google.com/macros/s/AKfycbzwu1774D5X9ruRpG3N5YVlSJIMEeArS1cNMBmEHe5U56jSoWldc9KYycHgBI_RG2t5AQ/exec';
-const form = document.forms['submit-to-google-sheet'];
-const submitButton = document.getElementById('submit-button');
-const statusText = document.getElementById('form-status');
-const validationMessage = document.getElementById('validation-message');
+// const form = document.forms['submit-to-google-sheet'];
+// const submitButton = document.getElementById('submit-button');
+// const statusText = document.getElementById('form-status');
+// const validationMessage = document.getElementById('validation-message');
 
 
-// Перевірка на загрозливі символи, формули, HTML, JS
-function containsThreats(input) {
-  const lower = input.toLowerCase().trim();
+// // Перевірка на загрозливі символи, формули, HTML, JS
+// function containsThreats(input) {
+//   const lower = input.toLowerCase().trim();
 
-  const forbiddenPatterns = [
-    /^=/, // формула
-    /<|>|script|javascript:/, // HTML або JS
-    /=importxml|=importhtml|=hyperlink|=script|=googlefinance|=image|=regexextract|=arrayformula/
-  ];
+//   const forbiddenPatterns = [
+//     /^=/, // формула
+//     /<|>|script|javascript:/, // HTML або JS
+//     /=importxml|=importhtml|=hyperlink|=script|=googlefinance|=image|=regexextract|=arrayformula/
+//   ];
 
-  return forbiddenPatterns.some(pattern => pattern.test(lower));
-}
+//   return forbiddenPatterns.some(pattern => pattern.test(lower));
+// }
 
-// Валідація форми
-function validateForm({ name, email, phone, message }) {
-  const nameRegex = /^[a-zA-Zа-яА-ЯіїєІЇЄ'’\s-]{2,}$/u;
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-  const phoneRegex = /^(\+?38)?0\d{9}$/;
+// // Валідація форми
+// function validateForm({ name, email, phone, message }) {
+//   const nameRegex = /^[a-zA-Zа-яА-ЯіїєІЇЄ'’\s-]{2,}$/u;
+//   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+//   const phoneRegex = /^(\+?38)?0\d{9}$/;
 
-  if (!nameRegex.test(name)) {
-    return 'Введіть коректне імʼя.';
-  }
+//   if (!nameRegex.test(name)) {
+//     return 'Введіть коректне імʼя.';
+//   }
 
-  if (!phoneRegex.test(phone)) {
-    return 'Введіть коректний номер телефону.';
-  }
+//   if (!phoneRegex.test(phone)) {
+//     return 'Введіть коректний номер телефону.';
+//   }
 
-  if (!emailRegex.test(email)) {
-    return 'Введіть коректний email.';
-  }
+//   if (!emailRegex.test(email)) {
+//     return 'Введіть коректний email.';
+//   }
 
-  if (message.length < 3 || message.length > 500 || containsThreats(message)) {
-    return 'Повідомлення містить заборонені символи або є надто коротким.';
-  }
+//   if (message.length < 3 || message.length > 500 || containsThreats(message)) {
+//     return 'Повідомлення містить заборонені символи або є надто коротким.';
+//   }
 
-  return 'OK';
-}
+//   return 'OK';
+// }
 
-// Обробка події надсилання
-form.addEventListener('submit', e => {
-  e.preventDefault();
+// // Обробка події надсилання
+// form.addEventListener('submit', e => {
+//   e.preventDefault();
 
-  const name = form.name.value.trim();
-  const email = form.email.value.trim();
-  const phone = form.phone.value.trim();
-  const message = form.message.value.trim();
+//   const name = form.name.value.trim();
+//   const email = form.email.value.trim();
+//   const phone = form.phone.value.trim();
+//   const message = form.message.value.trim();
 
-  const validationResult = validateForm({ name, email, phone, message });
+//   const validationResult = validateForm({ name, email, phone, message });
 
- if (validationResult !== 'OK') {
-  validationMessage.textContent = validationResult;
-  validationMessage.classList.add('visible');
+//  if (validationResult !== 'OK') {
+//   validationMessage.textContent = validationResult;
+//   validationMessage.classList.add('visible');
 
-  setTimeout(() => {
-    validationMessage.classList.remove('visible');
-  }, 4000);
+//   setTimeout(() => {
+//     validationMessage.classList.remove('visible');
+//   }, 4000);
 
-  return;
-}
+//   return;
+// }
 
 
-  // Встановити поточний час
-  document.getElementById('timestamp').value = new Date().toLocaleString('uk-UA');
+//   // Встановити поточний час
+//   document.getElementById('timestamp').value = new Date().toLocaleString('uk-UA');
 
-  submitButton.disabled = true;
-  submitButton.textContent = 'Чекати';
-  submitButton.classList.add('waiting');
+//   submitButton.disabled = true;
+//   submitButton.textContent = 'Чекати';
+//   submitButton.classList.add('waiting');
 
-  statusText.textContent = 'Надсилання...';
-  statusText.style.color = '#8400C9';
-  statusText.classList.add('visible');
+//   statusText.textContent = 'Надсилання...';
+//   statusText.style.color = '#8400C9';
+//   statusText.classList.add('visible');
 
-  fetch(endpoint, {
-    method: 'POST',
-    body: new FormData(form)
-  })
-    .then(response => {
-      if (!response.ok) throw new Error('Network response was not ok');
-      return response.json();
-    })
-    .then(data => {
-      statusText.textContent = 'Успішно надіслано!';
-      statusText.style.color = '#32CD32';
-      form.reset();
+//   fetch(endpoint, {
+//     method: 'POST',
+//     body: new FormData(form)
+//   })
+//     .then(response => {
+//       if (!response.ok) throw new Error('Network response was not ok');
+//       return response.json();
+//     })
+//     .then(data => {
+//       statusText.textContent = 'Успішно надіслано!';
+//       statusText.style.color = '#32CD32';
+//       form.reset();
 
-      setTimeout(() => {
-        statusText.classList.remove('visible');
-        submitButton.disabled = false;
-        submitButton.textContent = 'Надіслати';
-        submitButton.classList.remove('waiting');
-      }, 3000);
-    })
-    .catch(error => {
-      statusText.textContent = 'Помилка надсилання. Спробуйте ще раз.';
-      statusText.style.color = '#ff1e00ff';
-      console.error('Помилка надсилання:', error.message);
+//       setTimeout(() => {
+//         statusText.classList.remove('visible');
+//         submitButton.disabled = false;
+//         submitButton.textContent = 'Надіслати';
+//         submitButton.classList.remove('waiting');
+//       }, 3000);
+//     })
+//     .catch(error => {
+//       statusText.textContent = 'Помилка надсилання. Спробуйте ще раз.';
+//       statusText.style.color = '#ff1e00ff';
+//       console.error('Помилка надсилання:', error.message);
 
-      setTimeout(() => {
-        statusText.classList.remove('visible');
-        submitButton.disabled = false;
-        submitButton.textContent = 'Надіслати';
-        submitButton.classList.remove('waiting');
-      }, 3000);
-    });
-});
+//       setTimeout(() => {
+//         statusText.classList.remove('visible');
+//         submitButton.disabled = false;
+//         submitButton.textContent = 'Надіслати';
+//         submitButton.classList.remove('waiting');
+//       }, 3000);
+//     });
+// });
+

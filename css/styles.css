@@ -650,7 +650,7 @@ top: 0;
     display: block;
     position: absolute;
      z-index: 10;
-top: -315px;
+top: -310px;
  right: 5px;
  width: 330px;
 }
@@ -749,7 +749,7 @@ top: 140px;
 }
 .support__img2 {
  
-top: -233px;
+top: -227px;
  right: 5px;
  width: 250px;
 }
@@ -1228,5 +1228,6 @@ top: -250px;
     transform: translate(0, 0);
 
 }
+
 
 

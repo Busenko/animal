@@ -206,13 +206,13 @@ body.lock {
     z-index: 10;
     bottom: 10px;
     right: 10px;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #e2cc00;
-    font-size: 24px;
+    font-size: 28px;
     background-color: #fff;
     border-radius: 10px;
     cursor: pointer;
@@ -284,7 +284,8 @@ h1 {
     color: #2c82ff;
     text-transform: uppercase;
     font-size: 40px;
-    margin-top: 0;
+    
+    margin: 5px 10px;
 }
 
 /* ..................................................................................................................... */
@@ -1232,6 +1233,7 @@ top: -250px;
     transform: translate(0, 0);
 
 }
+
 
 
 
